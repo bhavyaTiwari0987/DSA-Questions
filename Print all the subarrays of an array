@@ -1,0 +1,24 @@
+Solution 1:
+TC = O(n^3)
+Solution 2: Using Recursion
+
+class HelloWorld {
+    public static void printAllSubArray(int arr[], int start , int end , int n){
+        if(end == n+1 && start == n)return;
+        if(end == n+1 && start!= n){
+            start++;
+            end = start;
+            printAllSubArray(arr, start, end , n);
+        }else{
+            for(int i = start; i<=end;i++){
+                System.out.print(arr[i]+ " ");
+            }
+            System.out.println();
+            printAllSubArray(arr, start, end+1 , n);
+        }
+    }
+    public static void main(String[] args) {
+        int arr[] = {1,2,3,4,5};
+       printAllSubArray(arr, 0, 0 , arr.length-1);
+    }
+}
