@@ -1,1 +1,90 @@
+## Questions Type
+1. Given an array of integer nums and an integer k, return the total number of subarrays whose sum equals k. / 560. Subarray Sum Equals K(Leetcode)
+2. Given an array of integer nums and an integer k, return the start and end index.
 
+
+1. Given an array of integer nums and an integer k, return the total number of subarrays whose sum equals k.
+Solution 1
+TC= O(n^2)
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+        for(int i = 0;i<nums.length;i++){
+            int currentSum = 0;
+            for(int j = i;j<nums.length;j++){
+                currentSum += nums[j];
+                if(currentSum == k){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+2. Given an array of integer nums and an integer k, return the start and end index.
+Solution 1: 
+TC: O(n^2)
+SC: O(1)
+
+class HelloWorld {
+    public static void subArrayWithGivenSum(int arr[], int sum, int n){
+        for(int i =0;i<n;i++){
+            int currentSum = 0;
+            
+            for(int j=i;j<n;j++){
+                currentSum = currentSum + arr[j];
+                if(currentSum == sum){
+                    System.out.println("Current sum is between "+ i +","+ " "+ j+" "+ "indexes");
+                    return;
+                }
+            }
+        }
+        System.out.println("No Current sum found");
+    }
+    public static void main(String[] args) {
+        int arr [] = {1,2,3,4,5};
+        int sum = 12;
+        int n = arr.length;
+        subArrayWithGivenSum(arr, sum , n);
+    }
+}
+
+Soution 2: Using HashMap
+TC = O(N)
+SC = O(N)
+
+import java.util.*;
+
+class HelloWorld {
+    public static void subArrayWithGivenSum(int arr[], int sum, int n){
+     int currentSum = 0;
+     int start = 0;
+     int end = -1;
+     HashMap<Integer, Integer> map = new HashMap<>();
+     for(int i=0; i<n; i++){
+         currentSum += arr[i];
+         if(currentSum == sum){
+             start = 0;
+             end = i;
+         }
+         if(map.containsKey(currentSum - sum)){
+             start = map.get(currentSum - sum) +1;
+             end = i;
+         }
+         map.put(currentSum , i);
+     }
+     if(end == -1){
+         System.out.println("not found");
+     }else {
+         System.out.println("current sum is found between" + " " + start + " " + "and" + " " + end + " " + "indexes");
+     }
+    }
+    public static void main(String[] args) {
+        int arr [] = {3, 4, 5, 2, 7, 9};
+        int sum = 25;
+        int n = arr.length;
+        subArrayWithGivenSum(arr, sum , n);
+    }
+}
