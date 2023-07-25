@@ -1,0 +1,91 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+class Node{
+    public int data;
+    public Node next;
+    
+    public Node(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+class HelloWorld {
+    public static Node createNode(int i){
+        Node newNode = new Node(i);
+        return newNode;
+    }
+    public static void printLinkedList(Node head){
+        Node temp = head;
+        while(temp!= null){
+            System.out.println(temp.data);
+            temp= temp.next;
+        }
+    }
+    public static Node findMiddle(Node head){
+        Node slow= head;
+        Node fast = head;
+        while(slow!= null){
+            if(fast.next== null || fast.next.next == null){
+                return slow;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+        
+    }
+    public static Node reverseLinkedList(Node head){
+        Node pre = null;
+        Node curr = head;
+        Node next = head.next;
+        
+        while(next!=null){
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+            next = next.next;
+        }
+        curr.next = pre;
+        pre = curr;
+        curr = next;
+        return pre;
+    }
+    public static Node rotateLinkedList(Node head , int k){
+        Node temp = head;
+        Node newHead= head;
+        int count = 0;
+        while(temp!=null){
+            count++;
+            if(count==k){
+                newHead = temp;
+                temp.next = null;
+                break;
+            }
+            temp= temp.next;
+        }
+        Node temp2= newHead;
+        while(temp2!=null){
+            if(temp2.next==null){
+                temp2.next = head;
+            }
+            temp2 = temp2.next;
+        }
+        return newHead;
+    }
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        Node temp1 = head;
+        Node temp2 = head;
+        for(int i = 2;i<=10;i++){
+            temp2 = createNode(i);
+            temp1.next = temp2;
+            temp1= temp2;
+        }
+        temp1.next = null;
+        // Node res = findMiddle(head);
+        // System.out.println(res.data);
+        // Node res = reverseLinkedList(head);
+        // Node res = rotateLinkedList(head , 4);
+        printLinkedList(head);
+    }
+}
