@@ -14,6 +14,7 @@ class HelloWorld {
         Node newNode = new Node(i);
         return newNode;
     }
+// Print linked list
     public static void printLinkedList(Node head){
         Node temp = head;
         while(temp!= null){
@@ -21,6 +22,7 @@ class HelloWorld {
             temp= temp.next;
         }
     }
+// Find middle of the linked list
     public static Node findMiddle(Node head){
         Node slow= head;
         Node fast = head;
@@ -34,6 +36,7 @@ class HelloWorld {
         return slow;
         
     }
+// Reverse LinkedList
     public static Node reverseLinkedList(Node head){
         Node pre = null;
         Node curr = head;
@@ -50,6 +53,7 @@ class HelloWorld {
         curr = next;
         return pre;
     }
+// Rotate LinedList
     public static Node rotateLinkedList(Node head , int k){
         Node temp = head;
         Node newHead= head;
