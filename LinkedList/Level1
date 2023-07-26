@@ -53,7 +53,7 @@ class HelloWorld {
         curr = next;
         return pre;
     }
-// Rotate LinedList
+// Rotate LinedList method 1
     public static Node rotateLinkedList(Node head , int k){
         Node temp = head;
         Node newHead= head;
@@ -61,9 +61,8 @@ class HelloWorld {
         while(temp!=null){
             count++;
             if(count==k){
-                newHead = temp;
+                newHead = temp.next;
                 temp.next = null;
-                break;
             }
             temp= temp.next;
         }
@@ -71,6 +70,7 @@ class HelloWorld {
         while(temp2!=null){
             if(temp2.next==null){
                 temp2.next = head;
+                return newHead;
             }
             temp2 = temp2.next;
         }
@@ -89,7 +89,8 @@ class HelloWorld {
         // Node res = findMiddle(head);
         // System.out.println(res.data);
         // Node res = reverseLinkedList(head);
-        // Node res = rotateLinkedList(head , 4);
-        printLinkedList(head);
+        Node res = rotateLinkedList(head , 4);
+        // System.out.println(4);
+        printLinkedList(res);
     }
 }
